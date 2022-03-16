@@ -1,0 +1,17 @@
+DB query for project:-
+For creating Users table:-
+mysql> Create table Users(userid varchar(40),pswd varchar(30));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> Insert into Users values("Admin","akki123" );
+Query OK, 1 row affected (0.03 sec)
+
+For creating Cars table:-
+ CREATE TABLE Cars(carno int(20) PRIMARY KEY,compnm varchar(30),
+ modnm varchar(30),encap varchar(20),ftype varchar(10),
+ cartype varchar(10),price int(20),color varchar(20));
+ 
+For creating Customers table:-
+ CREATE TABLE Customer(custid int PRIMARY KEY,
+ custnm varchar(30),car varchar(20),amt int(30),
+ address varchar(60),mob varchar(20));
