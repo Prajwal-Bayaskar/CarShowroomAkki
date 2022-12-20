@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <script language="Javascript" type="text/javascript">
+
+        function createRequestObject(){
+            var tmpXmlHttpObject;
+            if (window.XMLHttpRequest){
+                tmpXmlHttpObject=new XMLHttpRequest();
+            
+            }else if (window.ActiveXObject){
+                tmpXmlHttpObject=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return tmpXmlHttpObject;
+        }
+        var http=createRequestObject();
+
+        function makeGetRequest(){
+            ty=document.frm.compnm.value;
+            http.open('get','CompDDLSearch.py?compnm=' +ty);
+            http.onreadystatechange=processResponse;
+            http.send(null);
+        }
+ 
+        function processResponse(){
+            if(http.readyState==4){
+                var response=http.responseText;
+                document.getElementById('res').innerHTML=response;
+
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <br><br>
+            <h2>Search Cars by Company</h2>
+            <hr>
+            <form name="frm">
+                Company Name <select name="compnm" onchange="makeGetRequest()">
+                <option value="none">Select Company</option>
+                <option value="Mahindra">Mahindra</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Maruti">Maruti Suzuki</option>
+                <option value="Tata">Tata</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Renault">Reynault</option>
+            </select>
+            </form>
+            <br>
+            <div id="res"></div>
+        </div>
+    </body>
+</html>

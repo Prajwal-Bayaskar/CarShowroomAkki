@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <script language="Javascript" type="text/javascript">
+
+        function createRequestObject(){
+            var tmpXmlHttpObject;
+            if (window.XMLHttpRequest){
+                tmpXmlHttpObject=new XMLHttpRequest();
+            
+            }else if (window.ActiveXObject){
+                tmpXmlHttpObject=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return tmpXmlHttpObject;
+        }
+        var http=createRequestObject();
+
+        function makeGetRequest(){
+            ty=document.frm.carno.value;
+            http.open('get','CarRegister.py?carno=' +ty);
+            http.onreadystatechange=processResponse;
+            http.send(null);
+        }
+ 
+        function processResponse(){
+            if(http.readyState==4){
+                var response=http.responseText;
+                document.getElementById('res').innerHTML=response;
+
+            }
+        }
+        </script>
+    </head>
+    <body>
+    <div class="container">
+        <br><br>
+        <img src="Car_01.jpg" height="50%" width="50%">
+        <h2>Car Registeration Form</h2>
+        <hr>
+        <form name="frm" action="CarRegister.py" method="post" enctype="multipart/form-data">
+
+            <table>
+                    <input type="file" name="file" value="" />
+                    <input type="submit" name="Upload" value="Upload">
+                 </form>
+                <tr>
+                    <td>Car Registeration No.</td>
+                    <td><input type="text" name="carno" onfocus="makeGetRequest()"  class="form-control" ></td>
+                </tr>
+                
+                <tr>
+                    <td>Car Company</td>
+                    <td><input type="text" name="compnm"  class="form-control"></td>
+
+                </tr>
+                <tr>
+                    <td>Model Name </td>
+                    <td><input type="text" name="modnm" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>Engine Capacity</td>
+                    <td><input type="text" name="encap" class="form-control"></td>
+
+                </tr>
+                
+                <tr>
+                    <td>Fuel Type</td>
+                    <td><input type="text" name="ftype" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>Car Type</td>
+                    <td><input type="text" name="cartype" class="form-control"></td>
+
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td><input type="text" name="price" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>Car Color</td>
+                    <td><input type="text" name="col" class="form-control"></td>
+                </tr>
+                    
+                    
+                <br>
+
+                   <!-- <form action="upload.img" method="post" enctype="multipart/form-data">
+                   <tr> Select image to upload:
+                    <input type="file" name="upload image" class="form-control">
+                        </form>
+                    </tr> -->
+                <tr>
+                    <td><input type="submit" value="Submit" class="form-control"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    </body>
+</html>
